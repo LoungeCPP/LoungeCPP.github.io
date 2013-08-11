@@ -83,6 +83,8 @@ correct style. I'll be adding stuff here as the time goes (ask if you're not sur
     <li>Add <code>using</code>s into the deepest scope (see example).</li>
     <li>Make classes sealed or design for overriding.</li>
     <li>Always include visibility modifiers. (<i class="icon-warning-sign"></i> <strong>components and services must be <code>public</code>!</strong>)</li>
+    <li>Make fields <code>readonly</code> if possible.</li>
+    <li>If you can infer the type, infer the type.</li>
 </ul>
 <div class="panel">
     <div class="panel-heading">
@@ -127,7 +129,7 @@ correct style. I'll be adding stuff here as the time goes (ask if you're not sur
 
         <span class="k">public</span> <span class="kt">int</span> <span class="n">Test2</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
-        <span class="k">public</span> <span class="nf">Server</span><span class="p">(</span><span class="n">ILog</span> <span class="n">logger</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">Component</span><span class="p">(</span><span class="n">ILog</span> <span class="n">logger</span><span class="p">,</span> <span class="n">IOtherDependency</span> <span class="n">stuff</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
         <span class="p">}</span>
 

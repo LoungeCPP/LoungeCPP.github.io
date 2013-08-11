@@ -37,7 +37,7 @@ namespace LoungeChat.Server.Components {
 
         public int Test2 { get; set; }
 
-        public Server(ILog logger) {
+        public Component(ILog logger, IOtherDependency stuff) {
             _logger = logger;
         }
 
