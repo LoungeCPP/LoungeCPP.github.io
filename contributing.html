@@ -62,6 +62,7 @@ correct style. I'll be adding stuff here as the time goes (ask if you're not sur
     (Why not just LF: because Visual Studio is a horrible text editor. MonoDevelop should cope just fine
     on *nixes, and real editors like vim have no trouble either way.)</li>
     <li>4 spaces indent. No tabs whatsoever.</li>
+    <li>Try to make lines not longer than 150 characters.</li>
     <li><code>ClassNames</code> (<code>IInterfaceContracts</code> is an exception, and silencing R# inspection about
     inconsistent naming is fine here).</li>
     <li><code>IInterfaceNames</code> (because 1. Windsor's
@@ -86,6 +87,10 @@ correct style. I'll be adding stuff here as the time goes (ask if you're not sur
     <li>Make fields <code>readonly</code> if possible.</li>
     <li>If you can infer the type, infer the type.</li>
 </ul>
+<div class="alert alert-info">
+    If I see really bad formatting I will probably run R# over your code, but you should stick to these rules
+    to make the merging faster and easier for me.
+</div>
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title">Example</h3>
