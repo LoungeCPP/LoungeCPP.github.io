@@ -5,8 +5,9 @@
         <title>Contributing &laquo; Lounge&lt;Chat&gt;</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/colorful.css">
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -54,6 +55,139 @@ for formatting the commit messages.</p>
 <p>For an example, look at <code><a href="https://github.com/LoungeCPP/LoungeChat/commit/2857b92c2a"><i class="icon-code"></i> 2857b92c2a</a></code> or <code><a href="https://github.com/LoungeCPP/LoungeChat/commit/93c14ce17f"><i class="icon-code"></i> 93c14ce17f</a></code>.</p>
 
 <h1>Coding style</h1>
+<p>There are ReSharper and StyleCop settings in the repo to help you maintain the
+correct style. I'll be adding stuff here as the time goes (ask if you're not sure about something):</p>
+<ul>
+    <li>CRLF line endings. Do not use <code>core.autocrlf</code> or <code>core.eol</code>, they're broken.
+    (Why not just LF: because Visual Studio is a horrible text editor. MonoDevelop should cope just fine
+    on *nixes, and real editors like vim have no trouble either way.)</li>
+    <li>4 spaces indent. No tabs whatsoever.</li>
+    <li><code>ClassNames</code> (<code>IInterfaceContracts</code> is an exception, and silencing R# inspection about
+    inconsistent naming is fine here).</li>
+    <li><code>IInterfaceNames</code> (because 1. Windsor's
+    component registration convention 2. less confusion — there will be a lot of <code>Component : IComponent</code>).</li>
+    <li><code>TTypeParameterNames</code>.</li>
+    <li><code>MethodNames</code>, <code>PropertyNames</code>, <code>EnumeratorNames</code>.</li>
+    <li><code>_privateFieldNames</code>. (<i class="icon-warning-sign"></i> <strong>fields must always be private — expose only properties!</strong>)</li>
+    <li><code>ClassConstantNames</code>.</li>
+    <li><code>localVariableNames</code>, <code>localConstantNames</code>.</li>
+    <li>Braces attached (at the end of the line), always add braces to compound statements (<code>if</code>, <code>for</code>,
+    <code>foreach</code>, <code>while</code>, <code>using</code>, <code>fixed</code>).</li>
+    <li>Spacing as in example. (<i class="icon-warning-sign"></i> <strong>no dangling whitespace at the end of lines and in empty lines</strong>)</li>
+    <li>Wrapping implemented interface members in a region is fine. (<i class="icon-warning-sign"></i> <strong>no regions within methods! if you need that, you should refactor the method</strong>)</li>
+    <li>Automatic properties can be written on single line, except when you use attributes on <code>get</code> or <code>set</code>.</li>
+    <li>Everything else shouldn't be left on one line. (<i class="icon-warning-sign"></i> <strong>no single-line <code>if</code>s!</strong>)</li>
+    <li>Define minimal services as interfaces.</li>
+    <li>Every interface should have a contract class attached.</li>
+    <li>Every file must have a Apache License boilerplate on top.</li>
+    <li>Add <code>using</code>s into the deepest scope (see example).</li>
+    <li>Make classes sealed or design for overriding.</li>
+    <li>Always include visibility modifiers. (<i class="icon-warning-sign"></i> <strong>components and services must be <code>public</code>!</strong>)</li>
+</ul>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Example</h3>
+    </div>
+    <div class="highlight"><pre><span class="cp">#region Apache License 2.0</span>
+
+<span class="c1">// Copyright 2013 Lounge&lt;Chat&gt; Team</span>
+<span class="c1">// </span>
+<span class="c1">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">// you may not use this file except in compliance with the License.</span>
+<span class="c1">// You may obtain a copy of the License at</span>
+<span class="c1">// </span>
+<span class="c1">//   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">// </span>
+<span class="c1">// Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">// See the License for the specific language governing permissions and</span>
+<span class="c1">// limitations under the License. </span>
+
+<span class="cp">#endregion</span>
+
+<span class="k">namespace</span> <span class="nn">LoungeChat.Server.Components</span> <span class="p">{</span>
+    <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+    <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+    <span class="k">using</span> <span class="nn">ThirdPartyLibrary</span><span class="p">;</span>
+
+    <span class="k">using</span> <span class="nn">Services</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Component</span> <span class="p">:</span> <span class="n">IService1</span><span class="p">,</span> <span class="n">IService2</span> <span class="p">{</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">ILog</span> <span class="n">_logger</span><span class="p">;</span>
+        <span class="k">private</span> <span class="kt">int</span> <span class="n">_test</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">Something</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Test</span> <span class="p">{</span>
+            <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_test</span><span class="p">;</span> <span class="p">}</span>
+            <span class="k">set</span> <span class="p">{</span> <span class="n">_test</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Test2</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="nf">Server</span><span class="p">(</span><span class="n">ILog</span> <span class="n">logger</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Test</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="p">(</span><span class="s">&quot;Abababa&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Test2</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">Test</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="p">(</span><span class="s">&quot;blblblb&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="cp">#region Implementation of IService1</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">DoThing1</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">_logger</span><span class="p">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">&quot;Debug&quot;</span><span class="p">);</span>
+            <span class="n">_logger</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&quot;Start()&quot;</span><span class="p">);</span>
+            <span class="n">_logger</span><span class="p">.</span><span class="n">Warning</span><span class="p">(</span><span class="s">&quot;Warning&quot;</span><span class="p">);</span>
+            <span class="n">_logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">);</span>
+            <span class="n">_logger</span><span class="p">.</span><span class="n">Fatal</span><span class="p">(</span><span class="s">&quot;Fatal&quot;</span><span class="p">);</span>
+
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">Test</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">_logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s">&quot;Exception1&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">Test2</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">_logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s">&quot;Exception2&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">x</span> <span class="k">in</span> <span class="n">xs</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">}</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">idx</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">idx</span> <span class="p">&lt;</span> <span class="n">xs</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">++</span><span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">}</span>
+
+            <span class="kt">var</span> <span class="n">soChatSucks</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">soChatSucks</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="cp">#endregion</span>
+
+        <span class="cp">#region Implementation of IService2</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">DoThing2</span><span class="p">()</span> <span class="p">{</span>
+        <span class="p">}</span>
+
+        <span class="cp">#endregion</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
 
 <h1>Solution organisation</h1>
 

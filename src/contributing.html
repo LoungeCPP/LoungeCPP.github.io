@@ -8,30 +8,69 @@
 <code><a href="https://github.com/LoungeCPP/LoungeChat/commit/{{ id }}"><i class="icon-code"></i> {{ id }}</a></code>
 {%- endmacro %}
 
+{% macro warn(text) -%}
+(<i class="icon-warning-sign"></i> <strong>{{ text|safe }}</strong>)
+{%- endmacro %}
+
 {% block contents %}
 <h1>Workflow</h1>
 <p>The basic workflow is as follows:</p>
 <ol>
     <li>Fork the <a href="https://github.com/LoungeCPP/LoungeChat"> master repository</a>.</li>
-    <li>Create a new feature branch called {{ branch('feature/XYZ') }} (with XYZ being short name of the feature you're implementing),
-    basing on {{ branch('develop') }}.</li>
+    <li>Create a new feature branch called {{ branch("feature/XYZ") }} (with XYZ being short name of the feature you're implementing),
+    basing on {{ branch("develop") }}.</li>
     <li>Work on your feature.</li>
-    <li>Merge back into {{ branch('develop') }}, preferably with history cleanup.</li>
+    <li>Merge back into {{ branch("develop") }}, preferably with history cleanup.</li>
     <li>Create a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>.</li>
 </ol>
 <p>Pull request should describe the feature you've implemented. Your code will be reviewed,
 and you might be asked to make changes before the PR is accepted.</p>
 <div class="alert alert-info">
-    <strong>Important:</strong> do not merge into {{ branch('master') }}. We generally follow
-    <a href="http://nvie.com/git-model/">git-flow</a> model, and the {{ branch('master') }} is reserved for released code.
+    <strong>Important:</strong> do not merge into {{ branch("master") }}. We generally follow
+    <a href="http://nvie.com/git-model/">git-flow</a> model, and the {{ branch("master") }} is reserved for released code.
 </div>
 
 <h1>Commit messages</h1>
 <p>Follow <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">tpope's guidelines</a>
 for formatting the commit messages.</p>
-<p>For an example, look at {{ commit('2857b92c2a') }} or {{ commit('93c14ce17f') }}.</p>
+<p>For an example, look at {{ commit("2857b92c2a") }} or {{ commit("93c14ce17f") }}.</p>
 
 <h1>Coding style</h1>
+<p>There are ReSharper and StyleCop settings in the repo to help you maintain the
+correct style. I'll be adding stuff here as the time goes (ask if you're not sure about something):</p>
+<ul>
+    <li>CRLF line endings. Do not use <code>core.autocrlf</code> or <code>core.eol</code>, they're broken.
+    (Why not just LF: because Visual Studio is a horrible text editor. MonoDevelop should cope just fine
+    on *nixes, and real editors like vim have no trouble either way.)</li>
+    <li>4 spaces indent. No tabs whatsoever.</li>
+    <li><code>ClassNames</code> (<code>IInterfaceContracts</code> is an exception, and silencing R# inspection about
+    inconsistent naming is fine here).</li>
+    <li><code>IInterfaceNames</code> (because 1. Windsor's
+    component registration convention 2. less confusion — there will be a lot of <code>Component : IComponent</code>).</li>
+    <li><code>TTypeParameterNames</code>.</li>
+    <li><code>MethodNames</code>, <code>PropertyNames</code>, <code>EnumeratorNames</code>.</li>
+    <li><code>_privateFieldNames</code>. {{ warn("fields must always be private — expose only properties!") }}</li>
+    <li><code>ClassConstantNames</code>.</li>
+    <li><code>localVariableNames</code>, <code>localConstantNames</code>.</li>
+    <li>Braces attached (at the end of the line), always add braces to compound statements (<code>if</code>, <code>for</code>,
+    <code>foreach</code>, <code>while</code>, <code>using</code>, <code>fixed</code>).</li>
+    <li>Spacing as in example. {{ warn("no dangling whitespace at the end of lines and in empty lines") }}</li>
+    <li>Wrapping implemented interface members in a region is fine. {{ warn("no regions within methods! if you need that, you should refactor the method") }}</li>
+    <li>Automatic properties can be written on single line, except when you use attributes on <code>get</code> or <code>set</code>.</li>
+    <li>Everything else shouldn't be left on one line. {{ warn("no single-line <code>if</code>s!") }}</li>
+    <li>Define minimal services as interfaces.</li>
+    <li>Every interface should have a contract class attached.</li>
+    <li>Every file must have a Apache License boilerplate on top.</li>
+    <li>Add <code>using</code>s into the deepest scope (see example).</li>
+    <li>Make classes sealed or design for overriding.</li>
+    <li>Always include visibility modifiers. {{ warn("components and services must be <code>public</code>!") }}</li>
+</ul>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Example</h3>
+    </div>
+    {{ highlight("coding_style.cs") }}
+</div>
 
 <h1>Solution organisation</h1>
 
