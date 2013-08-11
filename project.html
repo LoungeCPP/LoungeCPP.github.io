@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Project &laquo; Lounge&lt;Chat&gt;</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Lounge&lt;Chat&gt;</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        
+                        <li class="active">
+                            <a href="project.html">Project</a>
+                        </li>
+                        
+                        <li>
+                            <a href="contributing.html">Contributing</a>
+                        </li>
+                        
+                        <li><a href="https://github.com/LoungeCPP/LoungeChat"><i class="icon-github"></i> GitHub repo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                
+<h1>Leadership</h1>
+<p>Current project manager is <a href="https://github.com/PiotrLegnica">Cat Plus Plus</a>.</p>
+
+<h1>Project goals</h1>
+<p>The primary goal is to create a FOSS replacement for <a href="http://chat.stackoverflow.com/">Stack Overflow Chat</a>.
+The secondary goal is to create a reusable web multi-user chat solution based on XMPP.</p>
+<p>The motivation for starting this project is twofold. First, many implemented features are plain broken,
+as time and experience has proven:</p>
+<ul>
+    <li>The global community moderation (a.k.a. flagging) system does not work properly. Not in the sense
+    that flagging does nothing, but in the sense that flagging is an extremely delayed response (unless
+    we coordinate flagging, which is probably against the mighty rules) to an extremely time-sensitive
+    situation. We've had cases of people getting banned for something said MONTHS ago, but we have trouble
+    getting and keeping trolls annoying us RIGHT NOW out. It just doesn't fit.</li>
+    <li>Room ownership is useless, and mostly for the show. They call us "owners", but we can't even
+    enforce simple rules that ensure good chatting experience for the community. Oh but yeah, we can
+    change the topic. And there's that nonsensical ability to move messages between rooms, that's used
+    pretty much exclusively as a workaround for lack of ability to delete messages.</li>
+    <li>Chat offers Markdown formatting, but in a reduced version, for no other reason than "we say you won't need that".</li>
+    <li>Mobile interface is just ridiculously under-featured.</li>
+    <li>Oneboxing (inlining external resources) has no opt-out, and sometimes disrupts the chat flow to the point of
+    covering an entire discussion.</li>
+    <li>Chat stores history, but the search engine is close to being useless.</li>
+    <li>And the protocol is closed and undocumented, so we can't easily replace the client.</li>
+</ul>
+<p>And we get to the second reason: neglect. We (the chat users) have reported these, but the reports either get
+no response, or are declined on the grounds of being incompatible with SO policies/vision for the chat. A vision
+that's detached from reality and what users actually want. The ideal chat room would be full of mindless drones
+droning about <i>insert technology we happened to include in the room title</i> 24/7.</p>
+<p>All of these add up to chat experience that gets extremely tiresome and unpleasant. Thankfully, despite SO's best
+efforts, we managed to form a community that transcends the technology. And that's how we arrive at Lounge&lt;Chat&gt;.</p>
+
+<h1>Why XMPP?</h1>
+<p>We've decided to use XMPP, because it's a standard, open protocol. There are many mature server and client implementations
+we can leverage to reduce the amount of work needed to get this project going. And at the end, once we flesh out the details,
+we hope to create a formal extension protocol, so that more clients and servers can be implemented with the chat features
+we came to like so much.</p>
+
+<h1 id="join">Joining the project</h1>
+<p>We're currently based mostly around a GitHub organisation <a href="https://github.com/organizations/LoungeCPP">@LoungeCPP</a>.
+Internal discussions happen on the original <a href="http://chat.stackoverflow.com/rooms/10/loungec">Lounge&lt;C++&gt;</a>.
+To be added to @LoungeCPP:</p>
+<ol>
+    <li>Send a mail to <a href="mailto:piotrlegnica@piotrl.pl">piotrlegnica@piotrl.pl</a> with your GitHub username.</li>
+    <li>Ping @CatPlusPlus in the chat.</li>
+</ol>
+<div class="alert alert-info">
+    <strong>Important</strong>: use a valid mail account that you check regularily. I want to be able to send out
+    organisatorial updates and stuff. You can opt out from the high-tech Manual Mailing List&trade; at any time.
+</div>
+<p>Note that non-regulars (i.e. if I don't recognise you) won't be added — you don't have to be part of the
+organisation to contribute, though. Look at <a href="contributing.html">contribution guidelines</a> and start hacking away.</p>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -34,6 +34,6 @@ def render():
     for section in sections:
         render_part(section)
 
-add_section('organisation')
+add_section('project')
 add_section('contributing')
 render()

@@ -1,5 +1,46 @@
 {% extends "_base.html" %}
 
+{% macro branch(name) -%}
+<code><i class="icon-code-fork"></i> {{ name }}</code>
+{%- endmacro %}
+
+{% macro commit(id) -%}
+<code><a href="https://github.com/LoungeCPP/LoungeChat/commit/{{ id }}"><i class="icon-code"></i> {{ id }}</a></code>
+{%- endmacro %}
+
 {% block contents %}
-<p>There will be more content here laaater.</p>
+<h1>Workflow</h1>
+<p>The basic workflow is as follows:</p>
+<ol>
+    <li>Fork the <a href="https://github.com/LoungeCPP/LoungeChat"> master repository</a>.</li>
+    <li>Create a new feature branch called {{ branch('feature/XYZ') }} (with XYZ being short name of the feature you're implementing),
+    basing on {{ branch('develop') }}.</li>
+    <li>Work on your feature.</li>
+    <li>Merge back into {{ branch('develop') }}, preferably with history cleanup.</li>
+    <li>Create a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>.</li>
+</ol>
+<p>Pull request should describe the feature you've implemented. Your code will be reviewed,
+and you might be asked to make changes before the PR is accepted.</p>
+<div class="alert alert-info">
+    <strong>Important:</strong> do not merge into {{ branch('master') }}. We generally follow
+    <a href="http://nvie.com/git-model/">git-flow</a> model, and the {{ branch('master') }} is reserved for released code.
+</div>
+
+<h1>Commit messages</h1>
+<p>Follow <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">tpope's guidelines</a>
+for formatting the commit messages.</p>
+<p>For an example, look at {{ commit('2857b92c2a') }} or {{ commit('93c14ce17f') }}.</p>
+
+<h1>Coding style</h1>
+
+<h1>Solution organisation</h1>
+
+<h1>Versioning</h1>
+
+<h1>Component design — working with Windsor</h1>
+
+<h1>Logging</h1>
+
+<h1>Code contracts</h1>
+
 {% endblock %}

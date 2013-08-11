@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Contributing &lt;Lounge&lt;Chat&gt;</title>
+        <meta charset="utf-8">
+        <title>Contributing &laquo; Lounge&lt;Chat&gt;</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
@@ -15,7 +16,7 @@
                     <ul class="nav navbar-nav">
                         
                         <li>
-                            <a href="organisation.html">Organisation</a>
+                            <a href="project.html">Project</a>
                         </li>
                         
                         <li class="active">
@@ -30,7 +31,40 @@
         <div class="container">
             <div class="row">
                 
-<p>There will be more content here laaater.</p>
+<h1>Workflow</h1>
+<p>The basic workflow is as follows:</p>
+<ol>
+    <li>Fork the <a href="https://github.com/LoungeCPP/LoungeChat"> master repository</a>.</li>
+    <li>Create a new feature branch called <code><i class="icon-code-fork"></i> feature/XYZ</code> (with XYZ being short name of the feature you're implementing),
+    basing on <code><i class="icon-code-fork"></i> develop</code>.</li>
+    <li>Work on your feature.</li>
+    <li>Merge back into <code><i class="icon-code-fork"></i> develop</code>, preferably with history cleanup.</li>
+    <li>Create a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>.</li>
+</ol>
+<p>Pull request should describe the feature you've implemented. Your code will be reviewed,
+and you might be asked to make changes before the PR is accepted.</p>
+<div class="alert alert-info">
+    <strong>Important:</strong> do not merge into <code><i class="icon-code-fork"></i> master</code>. We generally follow
+    <a href="http://nvie.com/git-model/">git-flow</a> model, and the <code><i class="icon-code-fork"></i> master</code> is reserved for released code.
+</div>
+
+<h1>Commit messages</h1>
+<p>Follow <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">tpope's guidelines</a>
+for formatting the commit messages.</p>
+<p>For an example, look at <code><a href="https://github.com/LoungeCPP/LoungeChat/commit/2857b92c2a"><i class="icon-code"></i> 2857b92c2a</a></code> or <code><a href="https://github.com/LoungeCPP/LoungeChat/commit/93c14ce17f"><i class="icon-code"></i> 93c14ce17f</a></code>.</p>
+
+<h1>Coding style</h1>
+
+<h1>Solution organisation</h1>
+
+<h1>Versioning</h1>
+
+<h1>Component design — working with Windsor</h1>
+
+<h1>Logging</h1>
+
+<h1>Code contracts</h1>
+
 
             </div>
         </div>
