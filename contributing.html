@@ -79,7 +79,7 @@ correct style. I'll be adding stuff here as the time goes (ask if you're not sur
     <li>Automatic properties can be written on single line, except when you use attributes on <code>get</code> or <code>set</code>.</li>
     <li>Everything else shouldn't be left on one line. (<i class="icon-warning-sign"></i> <strong>no single-line <code>if</code>s!</strong>)</li>
     <li>Define minimal services as interfaces.</li>
-    <li>Every interface should have a contract class attached.</li>
+    <li>Document contracts on service interfaces.</li>
     <li>Every file must have a Apache License boilerplate on top.</li>
     <li>Add <code>using</code>s into the deepest scope (see example).</li>
     <li>Make classes sealed or design for overriding.</li>
@@ -206,10 +206,6 @@ they explain the concepts pretty well.</p>
 <p>To enable logging in your component, simply add a dependency on <code>ILog</code> service. Note that
 server project itself does not reference any particular logging library, so don't use NLog or whatever
 we're using right now directly.</p>
-
-<h1>Code contracts</h1>
-<p>Get <a href="http://visualstudiogallery.msdn.microsoft.com/1ec7db13-3363-46c9-851f-1ce455f66970">Code Contracts</a> extension.
-Write contracts for interfaces (there are examples in the repo already). Read the CC user manual.</p>
 
 
             </div>
