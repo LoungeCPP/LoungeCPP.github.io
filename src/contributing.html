@@ -20,7 +20,6 @@
     <li>Create a new feature branch called {{ branch("feature/XYZ") }} (with XYZ being short name of the feature you're implementing),
     basing on {{ branch("develop") }}.</li>
     <li>Work on your feature.</li>
-    <li>Merge back into {{ branch("develop") }}, preferably with history cleanup.</li>
     <li>Create a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>.</li>
 </ol>
 <p>Pull request should describe the feature you've implemented. Your code will be reviewed,
@@ -32,20 +31,20 @@ and you might be asked to make changes before the PR is accepted.</p>
 
 <h1>Commit messages</h1>
 <p>Follow <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">tpope's guidelines</a>
-for formatting the commit messages.</p>
+for formatting the commit messages (no, the strict grammatical form is not required).</p>
 <p>For an example, look at {{ commit("2857b92c2a") }} or {{ commit("93c14ce17f") }}.</p>
 
 <h1>Coding style</h1>
 <p>There are ReSharper and StyleCop settings in the repo to help you maintain the
 correct style. I'll be adding stuff here as the time goes (ask if you're not sure about something):</p>
 <ul>
+    <li><strong>Follow <a href="http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29">SOLID</a> principles.</strong></li>
     <li>CRLF line endings. Do not use <code>core.autocrlf</code> or <code>core.eol</code>, they're broken.
     (Why not just LF: because Visual Studio is a horrible text editor. MonoDevelop should cope just fine
     on *nixes, and real editors like vim have no trouble either way.)</li>
     <li>4 spaces indent. No tabs whatsoever.</li>
     <li>Try to make lines not longer than 150 characters.</li>
-    <li><code>ClassNames</code> (<code>IInterfaceContracts</code> is an exception, and silencing R# inspection about
-    inconsistent naming is fine here).</li>
+    <li><code>ClassNames</code>.</li>
     <li><code>IInterfaceNames</code> (because 1. Windsor's
     component registration convention 2. less confusion — there will be a lot of <code>Component : IComponent</code>).</li>
     <li><code>TTypeParameterNames</code>.</li>
@@ -63,15 +62,11 @@ correct style. I'll be adding stuff here as the time goes (ask if you're not sur
     <li>Document contracts on service interfaces.</li>
     <li>Every file must have a Apache License boilerplate on top.</li>
     <li>Add <code>using</code>s into the deepest scope (see example).</li>
-    <li>Make classes sealed or design for overriding.</li>
+    <li>Make classes sealed or design for inheritance.</li>
     <li>Always include visibility modifiers. {{ warn("components and services must be <code>public</code>!") }}</li>
     <li>Make fields <code>readonly</code> if possible.</li>
     <li>If you can infer the type, infer the type.</li>
 </ul>
-<div class="alert alert-info">
-    If I see really bad formatting I will probably run R# over your code, but you should stick to these rules
-    to make the merging faster and easier for me.
-</div>
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title">Example</h3>
