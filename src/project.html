@@ -6,7 +6,7 @@
 
 <h1>Project goals</h1>
 <p>The primary goal is to create a FOSS replacement for <a href="http://chat.stackoverflow.com/">Stack Overflow Chat</a>.
-The secondary goal is to create a reusable web multi-user chat solution based on XMPP.</p>
+The secondary goal is to create a reusable chat solution that's better than IRC.</p>
 <p>The motivation for starting this project is twofold. First, many implemented features are plain broken,
 as time and experience has proven:</p>
 <ul>
@@ -25,6 +25,7 @@ as time and experience has proven:</p>
     covering an entire discussion.</li>
     <li>Chat stores history, but the search engine is close to being useless.</li>
     <li>And the protocol is closed and undocumented, so we can't easily replace the client.</li>
+    <li>Platform policies are shit.</li>
 </ul>
 <p>And we get to the second reason: neglect. We (the chat users) have reported these, but the reports either get
 no response, or are declined on the grounds of being incompatible with SO policies/vision for the chat. A vision
@@ -33,12 +34,11 @@ droning about <i>insert technology we happened to include in the room title</i> 
 <p>All of these add up to chat experience that gets extremely tiresome and unpleasant. And that's how we arrive at Lounge&lt;Chat&gt;.</p>
 
 <h1>Technologies used</h1>
-<p>C# for the server, TypeScript and AngularJS for the client.</p>
+<p>Python for the server, some thing or another for the client.</p>
 
 <h1 id="join">Joining the project</h1>
 <p>We're currently based mostly around a GitHub organisation <a href="https://github.com/organizations/LoungeCPP">@LoungeCPP</a>.
-Internal discussions happen on the original <a href="http://chat.stackoverflow.com/rooms/10/loungec">Lounge&lt;C++&gt;</a>.
-To be added to @LoungeCPP:</p>
+Discussion happen on either SO room or Slack one, whatever. To be added to LoungeCPP:</p>
 <ol>
     <li>Send a mail to <a href="mailto:piotrlegnica@piotrl.pl">piotrlegnica@piotrl.pl</a> with your GitHub username.</li>
     <li>Ping @CatPlusPlus in the chat.</li>
