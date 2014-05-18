@@ -35,14 +35,15 @@
 <h1>Workflow</h1>
 <p>The basic workflow is as follows:</p>
 <ol>
-    <li>Fork the <a href="https://github.com/LoungeCPP/LoungeChat"> master repository</a>.</li>
+    <li>Make sure the feature is something we want (ask in chat or whatever).</li>
+    <li>Fork the <a href="https://github.com/LoungeCPP/LoungeChat">master repository</a>.</li>
     <li>Create a new feature branch called <code><i class="icon-code-fork"></i> feature/XYZ</code> (with XYZ being short name of the feature you're implementing),
     basing on <code><i class="icon-code-fork"></i> develop</code>.</li>
     <li>Work on your feature.</li>
     <li>Create a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>.</li>
 </ol>
-<p>Pull request should describe the feature you've implemented. Your code will be reviewed,
-and you might be asked to make changes before the PR is accepted.</p>
+<p>Pull request MUST describe the feature you've implemented in detail. Your code will be reviewed,
+and you might be asked to make changes before the PR is accepted. Don't issue PRs on incomplete things.</p>
 <div class="alert alert-info">
     <strong>Important:</strong> do not merge into <code><i class="icon-code-fork"></i> master</code>. We generally follow
     <a href="http://nvie.com/git-model/">git-flow</a> model, and the <code><i class="icon-code-fork"></i> master</code> is reserved for released code.
@@ -54,153 +55,21 @@ for formatting the commit messages (no, the strict grammatical form is not requi
 <p>For an example, look at <code><a href="https://github.com/LoungeCPP/LoungeChat/commit/2857b92c2a"><i class="icon-code"></i> 2857b92c2a</a></code> or <code><a href="https://github.com/LoungeCPP/LoungeChat/commit/93c14ce17f"><i class="icon-code"></i> 93c14ce17f</a></code>.</p>
 
 <h1>Coding style</h1>
-<p>There are ReSharper and StyleCop settings in the repo to help you maintain the
-correct style. I'll be adding stuff here as the time goes (ask if you're not sure about something):</p>
+<p>Generally PEP8. Look at the code and follow the lead, don't make me babysit you.</p>
 <ul>
     <li><strong>Follow <a href="http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29">SOLID</a> principles.</strong></li>
-    <li>CRLF line endings. Do not use <code>core.autocrlf</code> or <code>core.eol</code>, they're broken.
-    (Why not just LF: because Visual Studio is a horrible text editor. MonoDevelop should cope just fine
-    on *nixes, and real editors like vim have no trouble either way.)</li>
+    <li>LF line endings. If you edit on Windows, use a real fucking text editor and don't break my precious files.</li>
+    <li><code>ClassNames</code>.</li>
+    <li><code>method_names</code>, <code>function_names</code>, <code>variable_names</code> et cetera.</li>
+    <li><code>CONSTANT_NAMES</code>.</li>
     <li>4 spaces indent. No tabs whatsoever.</li>
     <li>Try to make lines not longer than 150 characters.</li>
-    <li><code>ClassNames</code>.</li>
-    <li><code>IInterfaceNames</code> (because 1. Windsor's
-    component registration convention 2. less confusion — there will be a lot of <code>Component : IComponent</code>).</li>
-    <li><code>TTypeParameterNames</code>.</li>
-    <li><code>MethodNames</code>, <code>PropertyNames</code>, <code>EnumeratorNames</code>.</li>
-    <li><code>_privateFieldNames</code>. (<i class="icon-warning-sign"></i> <strong>fields must always be private — expose only properties!</strong>)</li>
-    <li><code>ClassConstantNames</code>.</li>
-    <li><code>localVariableNames</code>, <code>localConstantNames</code>.</li>
-    <li>Braces attached (at the end of the line), always add braces to compound statements (<code>if</code>, <code>for</code>,
-    <code>foreach</code>, <code>while</code>, <code>using</code>, <code>fixed</code>).</li>
-    <li>Spacing as in example. (<i class="icon-warning-sign"></i> <strong>no dangling whitespace at the end of lines and in empty lines</strong>)</li>
-    <li>Wrapping implemented interface members in a region is fine. (<i class="icon-warning-sign"></i> <strong>no regions within methods! if you need that, you should refactor the method</strong>)</li>
-    <li>Automatic properties can be written on single line, except when you use attributes on <code>get</code> or <code>set</code>.</li>
-    <li>Everything else shouldn't be left on one line. (<i class="icon-warning-sign"></i> <strong>no single-line <code>if</code>s!</strong>)</li>
-    <li>Define minimal services as interfaces.</li>
-    <li>Document contracts on service interfaces.</li>
-    <li>Every file must have a Apache License boilerplate on top.</li>
-    <li>Add <code>using</code>s into the deepest scope (see example).</li>
-    <li>Make classes sealed or design for inheritance.</li>
-    <li>Always include visibility modifiers. (<i class="icon-warning-sign"></i> <strong>components and services must be <code>public</code>!</strong>)</li>
-    <li>Make fields <code>readonly</code> if possible.</li>
-    <li>If you can infer the type, infer the type.</li>
+    <li><i class="icon-warning-sign"></i> <strong>SPACES AROUND =!</strong> I will end you if you commit something like <code>foo(x=1)</code>.</li>
+    <li><i class="icon-warning-sign"></i> <strong>No dangling whitespace at the end of lines and in empty lines!</strong></li>
+    <li><i class="icon-warning-sign"></i> <strong>No line continuations! Use parentheses instead.</strong></li>
+    <li>Group yer imports — stdlib modules, vendor modules, app modules.</li>
+    <li>Empty lines between import groups not required. Also you can import multiple things in one statement.</li>
 </ul>
-<div class="panel">
-    <div class="panel-heading">
-        <h3 class="panel-title">Example</h3>
-    </div>
-    <div class="highlight"><pre><span class="cp">#region Apache License 2.0</span>
-
-<span class="c1">// Copyright 2013 Lounge&lt;Chat&gt; Team</span>
-<span class="c1">// </span>
-<span class="c1">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
-<span class="c1">// you may not use this file except in compliance with the License.</span>
-<span class="c1">// You may obtain a copy of the License at</span>
-<span class="c1">// </span>
-<span class="c1">//   http://www.apache.org/licenses/LICENSE-2.0</span>
-<span class="c1">// </span>
-<span class="c1">// Unless required by applicable law or agreed to in writing, software</span>
-<span class="c1">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
-<span class="c1">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
-<span class="c1">// See the License for the specific language governing permissions and</span>
-<span class="c1">// limitations under the License. </span>
-
-<span class="cp">#endregion</span>
-
-<span class="k">namespace</span> <span class="nn">LoungeChat.Server.Components</span> <span class="p">{</span>
-    <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-    <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-
-    <span class="k">using</span> <span class="nn">ThirdPartyLibrary</span><span class="p">;</span>
-
-    <span class="k">using</span> <span class="nn">Services</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Component</span> <span class="p">:</span> <span class="n">IService1</span><span class="p">,</span> <span class="n">IService2</span> <span class="p">{</span>
-        <span class="k">private</span> <span class="k">readonly</span> <span class="n">ILog</span> <span class="n">_logger</span><span class="p">;</span>
-        <span class="k">private</span> <span class="kt">int</span> <span class="n">_test</span><span class="p">;</span>
-
-        <span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">Something</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
-
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">Test</span> <span class="p">{</span>
-            <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_test</span><span class="p">;</span> <span class="p">}</span>
-            <span class="k">set</span> <span class="p">{</span> <span class="n">_test</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">Test2</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-
-        <span class="k">public</span> <span class="nf">Component</span><span class="p">(</span><span class="n">ILog</span> <span class="n">logger</span><span class="p">,</span> <span class="n">IOtherDependency</span> <span class="n">stuff</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">private</span> <span class="k">void</span> <span class="nf">Test</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="p">(</span><span class="s">&quot;Abababa&quot;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">private</span> <span class="k">void</span> <span class="nf">Test2</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">try</span> <span class="p">{</span>
-                <span class="n">Test</span><span class="p">();</span>
-            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="p">(</span><span class="s">&quot;blblblb&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="cp">#region Implementation of IService1</span>
-
-        <span class="k">public</span> <span class="k">void</span> <span class="nf">DoThing1</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">_logger</span><span class="p">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">&quot;Debug&quot;</span><span class="p">);</span>
-            <span class="n">_logger</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&quot;Start()&quot;</span><span class="p">);</span>
-            <span class="n">_logger</span><span class="p">.</span><span class="n">Warning</span><span class="p">(</span><span class="s">&quot;Warning&quot;</span><span class="p">);</span>
-            <span class="n">_logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">);</span>
-            <span class="n">_logger</span><span class="p">.</span><span class="n">Fatal</span><span class="p">(</span><span class="s">&quot;Fatal&quot;</span><span class="p">);</span>
-
-            <span class="k">try</span> <span class="p">{</span>
-                <span class="n">Test</span><span class="p">();</span>
-            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">_logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s">&quot;Exception1&quot;</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="k">try</span> <span class="p">{</span>
-                <span class="n">Test2</span><span class="p">();</span>
-            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">_logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s">&quot;Exception2&quot;</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">x</span> <span class="k">in</span> <span class="n">xs</span><span class="p">)</span> <span class="p">{</span>
-            <span class="p">}</span>
-
-            <span class="k">for</span> <span class="p">(</span><span class="kt">var</span> <span class="n">idx</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">idx</span> <span class="p">&lt;</span> <span class="n">xs</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">++</span><span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
-            <span class="p">}</span>
-
-            <span class="kt">var</span> <span class="n">soChatSucks</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">soChatSucks</span><span class="p">)</span> <span class="p">{</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="cp">#endregion</span>
-
-        <span class="cp">#region Implementation of IService2</span>
-
-        <span class="k">public</span> <span class="k">void</span> <span class="nf">DoThing2</span><span class="p">()</span> <span class="p">{</span>
-        <span class="p">}</span>
-
-        <span class="cp">#endregion</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-
-<h1>Component design — working with Windsor</h1>
-<p>Read <a href="http://docs.castleproject.org/Windsor.MainPage.ashx">Windsor documentation</a> for now,
-they explain the concepts pretty well.</p>
-<p>In the server project, <code>Server</code> component is the root of the object graph (look at three calls pattern).</p>
-<p>Important things to remember is how to name components, services and how dependency resolution works.</p>
-
-<h1>Logging</h1>
-<p>To enable logging in your component, simply add a dependency on <code>ILog</code> service. Note that
-server project itself does not reference any particular logging library, so don't use NLog or whatever
-we're using right now directly.</p>
 
 
             </div>
