@@ -40,7 +40,7 @@ def render():
 sections     = collections.OrderedDict()
 production   = len(sys.argv) >= 2 and sys.argv[1].startswith('prod')
 base_context = {
-    'PROJECT':   'Lounge<Chat>',
+    'PROJECT':   'Lounge<C++>',
     'HTTP':      '' if production else 'http:',
     'BASE':      '' if production else '../',
     'SECTIONS':  sections,
@@ -50,6 +50,4 @@ base_context = {
 loader = jinja2.FileSystemLoader('src')
 env    = jinja2.Environment(loader = loader, autoescape = True)
 
-add_section('project')
-add_section('contributing')
 render()
